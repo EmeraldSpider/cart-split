@@ -1,0 +1,20 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sales_order_item">
+        <column xsi:type="varchar" name="original_sku" nullable="false" length="255" comment="Original SKU"/>
+    </table>
+    <table name="quote_item">
+        <column xsi:type="varchar" name="original_sku" nullable="false" length="255" comment="Original SKU"/>
+    </table>
+    <table name="customizer_sku" engine="innodb" resource="default" comment="Keeps track of SKUs that have splits from their original SKU">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" comment="Entity Id"/>
+        <column xsi:type="varchar" name="sku" nullable="false" length="255" comment="Split SKU value"/>
+        <column xsi:type="int" name="product_id" nullable="false" comment="Product ID of the split SKU item"/>
+        <column xsi:type="int" name="parent_id" padding="10" unsigned="true" nullable="false" comment="Parent Attribute ID"/>
+        <column xsi:type="int" name="multiplier" padding="10" unsigned="true" nullable="false" comment="Number of additional SKUs to create"/>
+        <column xsi:type="timestamp" name="time_occurred" comment="Time of event"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+</schema>
